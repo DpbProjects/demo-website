@@ -1,0 +1,19 @@
+---
+description: General coding standards for the Enneagram App
+alwaysApply: true
+---
+
+- Follow KISS (Keep It Simple, Stupid) and DRY (Don't Repeat Yourself) principles
+- Use TypeScript for all new code
+- Use early returns to reduce nesting and improve readability
+- Use Tailwind classes for styling; avoid CSS files
+- Use "class:" instead of ternary operators in class attributes
+- Use descriptive variable and function names
+- Event handlers should be prefixed with "handle" (e.g., handleClick, handleSubmit)
+- Implement proper accessibility features:
+  - Add aria-labels
+  - Use proper semantic HTML
+  - Ensure keyboard navigation works
+  - Add proper focus management
+- Use shadcn components for form elements
+- Prefer const arrow functions over regular functions

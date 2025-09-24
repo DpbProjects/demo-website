@@ -1,0 +1,19 @@
+---
+description: Minimal testing standard (Convex-first). Frontend/E2E will be added later.
+alwaysApply: false
+---
+
+# Testing (Convex-first, Minimal)
+
+**Scope now:** Backend tests with `convex-test` for queries, mutations, actions, schedules, and auth rules.
+**Later:** Frontend unit/integration (Jest/Vitest + RTL + MSW) and E2E (Playwright).
+
+## What to test (now)
+
+- **Queries**: filtering, pagination, visibility.
+- **Mutations**: validation and business rules (include one negative case).
+- **Actions**: external calls orchestrations (use fakes/stubs, no real network).
+- **Auth**: who can read/write/delete (at least one deny case).
+- **Schedules**: effects under fake timers (only if you have them).
+
+## Folder layout

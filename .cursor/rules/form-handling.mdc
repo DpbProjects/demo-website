@@ -1,0 +1,23 @@
+---
+description: Standards for form handling
+alwaysApply: false
+---
+
+Form implementation guidelines:
+
+- Use shadcn form components for consistency
+- Implement proper form validation:
+  - Use zod for schema validation
+  - Show inline validation errors
+  - Disable submit button when form is invalid
+- Handle loading states appropriately:
+  - Show loading indicators during submission
+  - Disable form inputs during submission
+- Implement proper error handling:
+  - Show error messages clearly
+  - Provide recovery options
+- Ensure proper accessibility:
+  - Use proper HTML5 form elements
+  - Add aria-labels
+  - Implement proper tab order
+  - Show validation errors to screen readers

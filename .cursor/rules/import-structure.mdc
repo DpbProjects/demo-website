@@ -1,0 +1,59 @@
+---
+description: Standards for organizing imports
+alwaysApply: true
+---
+
+Imports should be organized in the following order, with a blank line between each group:
+
+1. React and Next.js imports
+
+```tsx
+import { type FC } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
+```
+
+2. External library imports
+
+```tsx
+import { motion } from "framer-motion";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+```
+
+3. Shadcn component imports
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+```
+
+4. Internal component imports (using aliases)
+
+```tsx
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+```
+
+5. Internal utility imports
+
+```tsx
+import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/hooks/use-auth";
+```
+
+6. Type imports
+
+```tsx
+import type { User } from "@/lib/types";
+```
+
+Additional rules:
+
+- Use named imports with curly braces
+- Always use type imports for TypeScript types
+- Use absolute imports with @/ alias instead of relative paths
+- Sort imports alphabetically within each group
+- Remove unused imports
+- Avoid \* imports
+- Use explicit named exports instead of default exports

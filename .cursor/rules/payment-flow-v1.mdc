@@ -1,0 +1,51 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Feature Prompt — Basic Payment Flow (V1)
+
+## Context
+
+- Next.js (App Router) + Convex backend
+- Stripe Checkout, **one-off purchase only**
+- Single product: `"enneagram-core"`
+- Entitlement = entry in `purchases` table
+- Out of scope: subscriptions, multiple products, teams/orgs, access control, roles
+
+## Goal
+
+Implement the payment flow:
+
+1. User clicks **“Unlock & Take Test”** button.
+2. Call Convex mutation `createCheckoutSession(productSlug)` → creates a Stripe Checkout Session.
+3. Redirect to `session.url`.
+4. Stripe webhook (`checkout.session.completed`) updates Convex:
+   - Write a `purchases` row with `status = "paid"`.
+   - Store `stripeCustomerId` and session IDs.
+5. Convex query `hasEntitlement(productSlug)` returns true/false so frontend can gate access.
+6. After successful payment → `/test` is unlocked.
+
+## Deliverables
+
+- Convex:
+  - `createCheckoutSession(productSlug: string)` mutation
+  - `stripeWebhook` httpAction to handle Stripe events
+  - `hasEntitlement(productSlug: string)` query
+- Data model:
+  - `products` table: `slug`, `title`, `stripePriceId`, `active`
+  - `purchases` table: `userId`, `productSlug`, `stripeCustomerId`, `status`, `createdAt`
+  - `billingEvents` table: raw webhook receipts (for idempotency/debug)
+- Frontend:
+  - `ProductCard` with button → calls `createCheckoutSession`
+  - Redirect to Stripe → return to `/success` page
+  - On return, run `hasEntitlement("enneagram-core")` to gate `/test`
+
+## Acceptance Criteria
+
+- [ ] Clicking button opens Stripe Checkout with correct product
+- [ ] Successful payment inserts a `purchases` row with `status = "paid"`
+- [ ] Returning to app, user can access `/test`
+- [ ] If unpaid, `/test` is locked and button shows “Unlock & Take Test”
+- [ ] Webhooks idempotent (ignore duplicate events)

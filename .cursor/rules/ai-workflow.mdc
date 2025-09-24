@@ -1,0 +1,112 @@
+---
+alwaysApply: true
+---
+
+---
+
+description: Responsible AI-assisted development workflow (with minimal Convex-first testing touchpoints)
+alwaysApply: false
+
+---
+
+# Responsible AI-Assisted Development Workflow
+
+This rule defines a structured process for using AI responsibly when implementing features.
+Follow each stage in order to safeguard code quality and maintainability.
+
+---
+
+## 1. Problem Scope
+
+**Goal:** Define what you’re solving before you even touch AI.
+
+**Best Practices:**
+
+- Write a clear problem statement (“We need X feature because Y business case”).
+- Define success criteria (What does “done” look like? What should not break?).
+- List constraints (performance, security, maintainability, dependencies).
+- Decide whether AI is even appropriate here (or if a manual approach is safer).
+- **Never insert or modify code directly. Only suggest or generate snippets for copy-paste. Developer must explicitly decide and apply changes.**
+
+**Testing touchpoint (Convex):**
+
+- List 1–3 backend behaviors/invariants to protect (e.g., auth rules, visibility, pagination).
+- Note any risky paths that deserve a quick Convex test.
+
+---
+
+## 2. Planning
+
+**Goal:** Break the problem into steps before generating code.
+
+**Best Practices:**
+
+- Draft an outline of solution steps (data flow, components, APIs).
+- Identify the hard parts → where AI can help (e.g., boilerplate, regex, query building).
+- Keep the critical/complex logic under your control.
+- Use diagrams (C4, sequence flows) to make architecture explicit.
+
+**Testing touchpoint (Convex):**
+
+- Draft a mini test list (2–4 bullets): key query/mutation/action cases you’ll cover.
+
+---
+
+## 3. Prepare
+
+**Goal:** Set yourself up so AI can give high-quality output.
+
+**Best Practices:**
+
+- Gather context (existing code snippets, interfaces, dependencies).
+- Create prompts that are structured (role + context + constraints + examples).
+- Ask AI for step-by-step reasoning or pseudocode first before full implementation.
+- Compare multiple outputs if needed (don’t trust the first).
+
+**Testing touchpoint (Convex):**
+
+- Ensure a simple `convex-test` harness exists (see `testing.mdc`).
+- Decide one short test you’ll write first (the “golden path”).
+
+---
+
+## 4. Gradual Integration
+
+**Goal:** Merge AI code responsibly into the codebase.
+
+**Best Practices:**
+
+- Start small (add one function, test it, then expand).
+- Avoid wholesale copy-paste → integrate in chunks.
+- Add comments + TODOs when AI generates assumptions you need to verify.
+- Pair AI output with your knowledge (refactor variable names, extract to utils, follow your code style).
+
+**Testing touchpoint (Convex):**
+
+- For each slice: write/extend 1 short Convex test → implement → run tests.
+- Add at least one negative/auth case if relevant.
+
+---
+
+## 5. Review + Testing
+
+**Goal:** Ensure the solution is safe, maintainable, and understandable.
+
+**Best Practices:**
+
+- Do a self-review: Can you explain each line in plain English?
+- Run linters/formatters to enforce consistency.
+- Do a code review with a teammate → ensure human oversight.
+- Document the decision: why AI was used, what assumptions were made, where risks may exist.
+
+**Testing actions (Convex):**
+
+- Run typecheck + Convex tests locally (and in CI when available).
+- Confirm coverage of success path + one failure/auth path.
+- Record any gaps as TODOs for a later pass.
+
+---
+
+## References
+
+- See **testing.mdc** for the minimal Convex testing standard and examples.
