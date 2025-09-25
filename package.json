@@ -2,15 +2,18 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "bun@1.2.2",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic:": ""
   },
   "dependencies": {
     "@convex-dev/twilio": "^0.1.7",
+    "chromatic": "^13.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "convex": "^1.27.0",
