@@ -29,6 +29,7 @@ export default function SlickChat() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-6">
       <div className="flex flex-col items-center justify-center">
+        <h1>Feature Auth Flow</h1>
         <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
           <ChatHeader messageCount={messages?.length || 0} />
 
