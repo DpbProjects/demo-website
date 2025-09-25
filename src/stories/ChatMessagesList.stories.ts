@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-import ChatMessagesList from '../components/chat/chat-messages-list';
+import type { Meta, StoryObj } from "@storybook/nextjs";
+import ChatMessagesList from "../components/chat/chat-messages-list";
 
 const meta: Meta<typeof ChatMessagesList> = {
-  title: 'Chat/ChatMessagesList',
+  title: "Chat/ChatMessagesList",
   component: ChatMessagesList,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     messages: {
-      control: { type: 'object' },
-      description: 'Array of message objects to display',
+      control: { type: "object" },
+      description: "Array of message objects to display",
     },
   },
 };
@@ -19,37 +19,41 @@ const meta: Meta<typeof ChatMessagesList> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// Static base timestamp for consistent builds
+const BASE_TIME = "2024-01-15T10:30:00.000Z";
+const baseTimestamp = new Date(BASE_TIME).getTime();
+
 const sampleMessages = [
   {
     body: "Hi there! How can I help you today?",
-    date_created: new Date(Date.now() - 300000).toISOString(), // 5 minutes ago
+    date_created: new Date(baseTimestamp - 300000).toISOString(), // 5 minutes before base
     direction: "inbound",
   },
   {
     body: "I need help with my recent order",
-    date_created: new Date(Date.now() - 240000).toISOString(), // 4 minutes ago
+    date_created: new Date(baseTimestamp - 240000).toISOString(), // 4 minutes before base
     direction: "outbound-api",
     status: "delivered",
   },
   {
     body: "Of course! Can you provide your order number?",
-    date_created: new Date(Date.now() - 180000).toISOString(), // 3 minutes ago
+    date_created: new Date(baseTimestamp - 180000).toISOString(), // 3 minutes before base
     direction: "inbound",
   },
   {
     body: "It's #12345",
-    date_created: new Date(Date.now() - 120000).toISOString(), // 2 minutes ago
+    date_created: new Date(baseTimestamp - 120000).toISOString(), // 2 minutes before base
     direction: "outbound-api",
     status: "delivered",
   },
   {
     body: "Let me look that up for you. One moment please...",
-    date_created: new Date(Date.now() - 60000).toISOString(), // 1 minute ago
+    date_created: new Date(baseTimestamp - 60000).toISOString(), // 1 minute before base
     direction: "inbound",
   },
   {
     body: "Thank you for waiting! 😊",
-    date_created: new Date().toISOString(), // now
+    date_created: BASE_TIME, // Base time
     direction: "inbound",
   },
 ];
@@ -90,29 +94,29 @@ export const LongConversation: Story = {
       ...sampleMessages,
       {
         body: "I found your order! It was shipped yesterday and should arrive tomorrow.",
-        date_created: new Date(Date.now() + 30000).toISOString(),
+        date_created: new Date(baseTimestamp + 30000).toISOString(), // 30 seconds after base
         direction: "inbound",
       },
       {
         body: "That's great news! Thanks for checking.",
-        date_created: new Date(Date.now() + 60000).toISOString(),
+        date_created: new Date(baseTimestamp + 60000).toISOString(), // 1 minute after base
         direction: "outbound-api",
         status: "sent",
       },
       {
         body: "You're welcome! Is there anything else I can help you with?",
-        date_created: new Date(Date.now() + 90000).toISOString(),
+        date_created: new Date(baseTimestamp + 90000).toISOString(), // 1.5 minutes after base
         direction: "inbound",
       },
       {
         body: "No, that's all. Have a great day!",
-        date_created: new Date(Date.now() + 120000).toISOString(),
+        date_created: new Date(baseTimestamp + 120000).toISOString(), // 2 minutes after base
         direction: "outbound-api",
         status: "delivered",
       },
       {
         body: "You too! Thanks for contacting us. 👋",
-        date_created: new Date(Date.now() + 150000).toISOString(),
+        date_created: new Date(baseTimestamp + 150000).toISOString(), // 2.5 minutes after base
         direction: "inbound",
       },
     ],
@@ -124,19 +128,19 @@ export const MixedStatusMessages: Story = {
     messages: [
       {
         body: "Message that was delivered",
-        date_created: new Date(Date.now() - 180000).toISOString(),
+        date_created: new Date(baseTimestamp - 180000).toISOString(), // 3 minutes before base
         direction: "outbound-api",
         status: "delivered",
       },
       {
         body: "Message that was sent",
-        date_created: new Date(Date.now() - 120000).toISOString(),
+        date_created: new Date(baseTimestamp - 120000).toISOString(), // 2 minutes before base
         direction: "outbound-api",
         status: "sent",
       },
       {
         body: "Message that's pending",
-        date_created: new Date(Date.now() - 60000).toISOString(),
+        date_created: new Date(baseTimestamp - 60000).toISOString(), // 1 minute before base
         direction: "outbound-api",
         status: "pending",
       },
