@@ -36,7 +36,7 @@ const PushNotificationButton = () => {
     <button
       onClick={handleSendNotification}
       disabled={isLoading}
-      className="my-4 flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-green-300 text-white rounded-lg transition-colors"
+      className="my-4 flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-blue-600 disabled:bg-green-300 text-white rounded-lg transition-colors"
     >
       <Bell size={16} />
       {isLoading ? "Sending..." : "Send Push Notification"}
