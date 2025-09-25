@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 const baseMessage = {
   body: "Hello! How can I help you today?",
-  date_created: new Date().toISOString(),
+  date_created: "2024-01-15T10:30:00.000Z", // Static date for consistent Chromatic builds
   direction: "inbound",
 };
 
