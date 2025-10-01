@@ -1,9 +1,15 @@
 import { v } from "convex/values";
-import { action, internalMutation, query } from "./_generated/server";
+import {
+  action,
+  internalAction,
+  internalMutation,
+  query,
+} from "./_generated/server";
 import { twilio } from "./sms";
 import { api, internal } from "./_generated/api";
 import { messageValidator } from "@convex-dev/twilio";
 
+twilio.incomingMessageCallback = internal.messages.handleIncomingMessage;
 
 export const sendSms = action({
   args: {
@@ -11,13 +17,11 @@ export const sendSms = action({
   },
   handler: async (ctx, args) => {
     await twilio.sendMessage(ctx, {
-      to: "whatsapp:+447982158312",
+      to: "whatsapp:+447474657765",
       body: args.body,
     });
   },
 });
-
-twilio.incomingMessageCallback = internal.messages.handleIncomingMessage;
 
 export const getChatMessages = query({
   args: {},
@@ -26,6 +30,16 @@ export const getChatMessages = query({
   },
 });
 
+// export const registerIncomingSmsHandler = internalAction({
+//   args: { sid: v.string() },
+//   handler: async (ctx, args) => {
+//     return await twilio.registerIncomingSmsHandler(ctx, {
+//       sid: args.sid,
+//     });
+//   },
+// });
+
+// This is the webhook that is called when an SMS is received. This is just for testing purposes.
 export const handleIncomingMessage = internalMutation({
   args: {
     message: messageValidator,

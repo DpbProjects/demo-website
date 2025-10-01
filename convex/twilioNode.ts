@@ -3,6 +3,12 @@
 import { action } from "./_generated/server";
 import { v } from "convex/values";
 import { api } from "./_generated/api";
+import Twilio from "twilio";
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID!;
+const authToken = process.env.TWILIO_AUTH_TOKEN!;
+
+const client = Twilio(accountSid, authToken);
 
 export const sendWhatsAppTemplate = action({
   args: {
@@ -16,16 +22,9 @@ export const sendWhatsAppTemplate = action({
     status: v.string(),
   }),
   handler: async (ctx, args) => {
-    const twilio = require("twilio");
-
-    const client = twilio(
-      process.env.TWILIO_ACCOUNT_SID,
-      process.env.TWILIO_AUTH_TOKEN
-    );
-
     try {
       const message = await client.messages.create({
-        from: "whatsapp:+14155238886", // Twilio Sandbox number
+        from: process.env.TWILIO_PHONE_NUMBER!,
         to: `whatsapp:${args.to}`,
         contentSid: args.contentSid,
         contentVariables: args.contentVariables,
@@ -50,6 +49,7 @@ export const sendAppointmentReminder = action({
     to: v.string(),
     date: v.string(),
     time: v.string(),
+    contentSid: v.optional(v.string()),
   },
   returns: v.object({
     success: v.boolean(),
@@ -57,21 +57,29 @@ export const sendAppointmentReminder = action({
     status: v.string(),
   }),
   handler: async (ctx, args) => {
-    const contentVariables = JSON.stringify({
-      "1": args.date,
-      "2": args.time,
-    });
+    try {
+      const contentVariables = JSON.stringify({
+        "1": args.date,
+        "2": args.time,
+      });
 
-    const result: {
-      success: boolean;
-      messageSid: string;
-      status: string;
-    } = await ctx.runAction(api.twilioNode.sendWhatsAppTemplate, {
-      to: args.to,
-      contentSid: "HXe885f5080ad23cd83492efd0c0bf7a19",
-      contentVariables,
-    });
+      const message = await client.messages.create({
+        from: process.env.TWILIO_PHONE_NUMBER!,
+        to: `whatsapp:${args.to}`,
+        contentSid: args.contentSid || "HXe885f5080ad23cd83492efd0c0bf7a19",
+        contentVariables,
+      });
 
-    return result;
+      console.log("WhatsApp appointment reminder sent:", message.sid);
+
+      return {
+        success: true,
+        messageSid: message.sid,
+        status: message.status,
+      };
+    } catch (error) {
+      console.error("WhatsApp appointment reminder error:", error);
+      throw new Error(`Failed to send WhatsApp appointment reminder: ${error}`);
+    }
   },
 });
