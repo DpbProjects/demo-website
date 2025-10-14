@@ -4,41 +4,56 @@
 import { useQuery, useAction } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useState } from "react";
-import ChatHeader from "@/components/chat/chat-header";
-import ChatInput from "@/components/chat/chat-input";
-import ChatMessagesList from "@/components/chat/chat-messages-list";
-import PushNotificationButton from "@/components/chat/push-notification-button";
+import { Hero } from "@/components/sections/hero";
+import { FeaturesGrid } from "@/components/sections/features-grid";
+import { StatsSection } from "@/components/sections/stats";
+import { CtaBanner } from "@/components/sections/cta-banner";
+import { BellIcon, BotIcon, BubblesIcon } from "lucide-react";
 
-export default function SlickChat() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const messages = useQuery(api.messages.getChatMessages);
-  const sendMessage = useAction(api.messages.triggerSms);
-
-  const handleSendMessage = async (messageBody: string) => {
-    setIsLoading(true);
-    try {
-      await sendMessage({ body: messageBody });
-    } catch (error) {
-      alert("Failed to send message");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-6">
-      <div className="flex flex-col items-center justify-center">
-        <h1>Feature Branch 20</h1>
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-          <ChatHeader messageCount={messages?.length || 0} />
-
-          <ChatMessagesList messages={messages} />
-
-          <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
-        </div>
-        <PushNotificationButton />
-      </div>
-    </div>
+    <main>
+      <Hero
+        heading="Welcome to SlickChat"
+        subtitle="The easiest way to chat with your customers"
+        primaryButtonText="Get Started"
+        secondaryButtonText="Learn More"
+        onPrimaryClick={() => {}}
+        onSecondaryClick={() => {}}
+      />
+      <FeaturesGrid
+        features={[
+          {
+            icon: <BubblesIcon />,
+            title: "Real-time Chat",
+            description: "Chat with your customers in real-time",
+          },
+          {
+            icon: <BotIcon />,
+            title: "AI-powered Chat",
+            description: "Chat with your customers with AI-powered responses",
+          },
+          {
+            icon: <BellIcon />,
+            title: "Push Notifications",
+            description: "Send push notifications to your customers",
+          },
+        ]}
+      />
+      <StatsSection
+        stats={[
+          { value: "100", label: "Customers" },
+          { value: "100", label: "Messages" },
+          { value: "100", label: "Messages" },
+          { value: "100", label: "Messages" },
+        ]}
+      />
+      <CtaBanner
+        title="Ready to get started?"
+        description="Get started with SlickChat today"
+        buttonText="Get Started"
+        onButtonClick={() => {}}
+      />
+    </main>
   );
 }
