@@ -45,7 +45,7 @@ export const Hero: FC<HeroProps> = ({
     >
       <div className="max-w-4xl mx-auto text-center">
         {/* Large, clean typography */}
-        <h1 className={`text-7xl md:text-8xl font-light tracking-tight mb-8 leading-[0.95] ${textClasses[variant]}`}>
+        <h1 className={`text-7xl md:text-8xl font-light tracking-tight mb-8 leading-[0.95] ${textClasses[variant]} text-gray-300!`}>
           {heading}
         </h1>
         
