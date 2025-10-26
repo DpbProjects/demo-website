@@ -1,114 +1,88 @@
-import { Separator } from "@/components/ui/separator"
-import { Github, Twitter, Linkedin } from "lucide-react"
+import Link from "next/link";
+import { Facebook, Twitter, Instagram } from "lucide-react";
 
-export function Footer() {
+const Footer: React.FC = () => {
   return (
-    <footer className="py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <span className="text-lg font-bold text-primary-foreground">V</span>
-              </div>
-              <span className="text-xl font-semibold">Velocity</span>
-            </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Building the future of team collaboration, one feature at a time.
+    <footer className="bg-neutral-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+          {/* Logo & Description */}
+          <div className="space-y-6">
+            <Link
+              href="/"
+              className="text-xl font-bold tracking-wider inline-block"
+            >
+              audiophile
+            </Link>
+            <p className="text-neutral-400 text-sm leading-relaxed max-w-md">
+              Audiophile is an all in one stop to fulfill your audio needs.
+              We're a small team of music lovers and sound specialists who are
+              devoted to helping you get the most out of personal audio. Come
+              and visit our demo facility - we're open 7 days a week.
             </p>
           </div>
 
-          <div>
-            <h3 className="mb-4 text-sm font-semibold">Product</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Changelog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Documentation
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold">Company</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a href="#about" className="text-muted-foreground transition-colors hover:text-foreground">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold">Legal</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Cookie Policy
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Navigation */}
+          <nav className="flex flex-col sm:flex-row gap-6 lg:justify-end lg:items-start">
+            <Link
+              href="/"
+              className="text-sm font-semibold tracking-wider hover:text-[#D87D4A] transition-colors"
+            >
+              HOME
+            </Link>
+            <Link
+              href="/headphones"
+              className="text-sm font-semibold tracking-wider hover:text-[#D87D4A] transition-colors"
+            >
+              HEADPHONES
+            </Link>
+            <Link
+              href="/speakers"
+              className="text-sm font-semibold tracking-wider hover:text-[#D87D4A] transition-colors"
+            >
+              SPEAKERS
+            </Link>
+            <Link
+              href="/earphones"
+              className="text-sm font-semibold tracking-wider hover:text-[#D87D4A] transition-colors"
+            >
+              EARPHONES
+            </Link>
+          </nav>
         </div>
 
-        <Separator className="my-8" />
-
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-muted-foreground">© 2025 Velocity. All rights reserved.</p>
+        {/* Bottom Row */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 border-t border-neutral-800">
+          <p className="text-neutral-400 text-sm">
+            Copyright 2021. All Rights Reserved
+          </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="Twitter">
+            <Link
+              href="#"
+              className="text-white hover:text-[#D87D4A] transition-colors"
+            >
+              <Facebook className="h-5 w-5" />
+              <span className="sr-only">Facebook</span>
+            </Link>
+            <Link
+              href="#"
+              className="text-white hover:text-[#D87D4A] transition-colors"
+            >
               <Twitter className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="GitHub">
-              <Github className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
-            </a>
+              <span className="sr-only">Twitter</span>
+            </Link>
+            <Link
+              href="#"
+              className="text-white hover:text-[#D87D4A] transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="sr-only">Instagram</span>
+            </Link>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
+
+export default Footer;
