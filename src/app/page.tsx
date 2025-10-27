@@ -19,7 +19,7 @@ export default function HomePage() {
         <ProductPanel />
         <SplitPanel />
         <About />
-        <FeatureCard image="https://images.unsplash.com/photo-1511379938547-c1f69419868d" title="ZX9 Speaker" description="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound." href="/products/zx9-speaker" />
+        <FeatureCard image="/zx9-speaker-on-modern-table-gray-background.jpg" title="ZX9 Speaker" description="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound." href="/products/zx9-speaker" />
       </main>
       <Footer />
     </div>
