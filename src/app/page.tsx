@@ -6,7 +6,7 @@ import Promo from "@/components/sections/promo";
 import ProductPanel from "@/components/sections/product-panel";
 import SplitPanel from "@/components/sections/split-panel";
 import About from "@/components/sections/about";
-import FeatureCard from "@/components/feature-card";
+import ProductDetailImageGrid from "@/components/product-detail-image-grid";
 
 export default function HomePage() {
   return (
@@ -19,7 +19,15 @@ export default function HomePage() {
         <ProductPanel />
         <SplitPanel />
         <About />
-        <FeatureCard image="/zx9-speaker-on-modern-table-gray-background.jpg" title="ZX9 Speaker" description="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound." href="/products/zx9-speaker" />
+        <ProductDetailImageGrid
+          images={{
+            topLeft:
+              "/premium-black-wireless-headphones-on-dark-background.jpg",
+            bottomLeft:
+              "/premium-black-wireless-headphones-on-dark-background.jpg",
+            right: "/premium-black-wireless-headphones-on-dark-background.jpg",
+          }}
+        />
       </main>
       <Footer />
     </div>
