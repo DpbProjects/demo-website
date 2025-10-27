@@ -44,7 +44,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         </div>
 
         {/* Content Section */}
-        <div className="px-6 py-8 lg:py-12 lg:pr-12 flex flex-col justify-center">
+        <div className="px-12 py-8 lg:py-12 lg:pr-12 flex flex-col justify-center">
           {isNew && (
             <p className="text-xs lg:text-sm font-normal tracking-[0.5em] text-[#D87D4A] mb-4 lg:mb-6">
               NEW PRODUCT
