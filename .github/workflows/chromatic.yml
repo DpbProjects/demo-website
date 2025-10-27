@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - "main" # 👈 Excludes the example branch
+  pull_request:
+    branches:
+      - "main" # 👈 Triggers on PRs to main branch
 
 jobs:
   chromatic:
