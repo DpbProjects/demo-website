@@ -51,7 +51,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             </p>
           )}
 
-          <h2 className="text-2xl lg:text-4xl xl:text-5xl font-bold tracking-wide mb-6 lg:mb-8 leading-tight">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide mb-6 lg:mb-8 leading-tight text-red-600">
             {title}
           </h2>
 
