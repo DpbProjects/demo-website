@@ -9,7 +9,7 @@
     "start": "next start",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_64ca32378e9326c"
+    "chromatic": "npx chromatic --project-token=chpt_375e3a931a83402"
   },
   "dependencies": {
     "@convex-dev/twilio": "^0.1.7",
