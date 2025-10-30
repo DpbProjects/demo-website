@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
             <p className="text-sm tracking-[0.5em] text-neutral-400 uppercase">
               New Product
             </p>
-            <h1 className="text-4xl text-red-600 sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            <h1 className="text-4xl text-white sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               XX99 MARK II
               <br />
               HEADPHONES
